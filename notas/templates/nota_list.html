@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis Notas</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Mis Notas</h1>
+    <a href="{% url 'nota_create' %}">Crear Nueva Nota</a>
+
+    <ul>
+        {% for nota in object_list %}
+        <li>
+            <span>{{ nota.titulo }}</span>
+            <span>
+                <a href="{% url 'nota_update' nota.pk %}">Editar</a> |
+                <a href="{% url 'nota_delete' nota.pk %}">Borrar</a>
+            </span>
+        </li>
+        {% empty %}
+        <li>No hay notas todavía</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
